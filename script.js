@@ -287,9 +287,13 @@ function changeMode() {
 }
 
 let myVoiceRec;
-if (window.webkitSpeechRecognition) {
-    myVoiceRec = new webkitSpeechRecognition();
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (typeof SpeechRecognition !== 'undefined') {
+    myVoiceRec = new SpeechRecognition();
     myVoiceRec.lang = isDeToArabic ? 'de-DE' : 'ar-SA';
+    myVoiceRec.interimResults = false;
+    myVoiceRec.maxAlternatives = 1;
     
     myVoiceRec.onresult = function(e) {
         const text = e.results[0][0].transcript;
@@ -298,7 +302,15 @@ if (window.webkitSpeechRecognition) {
         micOverlay.classList.add('hidden');
     };
 
-    myVoiceRec.onerror = function() {
+    myVoiceRec.onerror = function(event) {
+        console.error("Speech Recognition Error: ", event.error);
+        if (event.error === 'not-allowed') {
+            alert("Microphone permission was denied. Please allow it in settings.");
+        } else if (event.error === 'no-speech') {
+            alert("No speech was detected. Please try again.");
+        } else if (event.error === 'network') {
+            alert("Network error. Please check your connection.");
+        }
         micOverlay.classList.add('hidden');
     };
 
@@ -306,6 +318,7 @@ if (window.webkitSpeechRecognition) {
         micOverlay.classList.add('hidden');
     };
 }
+
 
 function listenToWord() {
     const speech = new SpeechSynthesisUtterance(deResult.innerText);
