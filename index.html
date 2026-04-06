@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Arabic Dictionary</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-body">
+        <header>
+            <div class="logo-area">
+                <img src="logo.png" alt="Logo" class="logo-img">
+                <h1>Deu<span>Arab</span></h1>
+            </div>
+            <p>Simple translator for students</p>
+        </header>
+
+        <main>
+            <div class="box">
+                <div class="lang-switch">
+                    <span id="lang1">Deutsch</span>
+                    <button id="btnSwitch" class="btn-s">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+                    </button>
+                    <span id="lang2">عربي</span>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="myInput" placeholder="Type a word..." autocomplete="off">
+                    <button id="btnMic" class="btn-i">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                    </button>
+                </div>
+                
+                <div id="resCard" class="res-box hidden">
+                    <div class="part1">
+                        <h2 id="resGerman">Hallo</h2>
+                        <button id="btnListen" class="btn-l">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                        </button>
+                    </div>
+                    <div class="sep"> -> </div>
+                    <div class="part2">
+                        <h2 id="resArabic" dir="rtl">مرحبا</h2>
+                    </div>
+                </div>
+
+                <div id="noMatch" class="no-word hidden">
+                    <p>Not in our list!</p>
+                </div>
+            </div>
+
+            <section class="all-words">
+                <h3>Vocabulary List</h3>
+                <div class="tabs" id="tabs">
+                    <button class="t-btn active" data-cat="all">All</button>
+                    <button class="t-btn" data-cat="basics">Basics</button>
+                    <button class="t-btn" data-cat="numbers">Numbers</button>
+                    <button class="t-btn" data-cat="colors">Colors</button>
+                    <button class="t-btn" data-cat="verbs">Verbs</button>
+                    <button class="t-btn" data-cat="objects">Objects</button>
+                </div>
+                <div class="grid" id="grid">
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Translator Project - 2026</p>
+        </footer>
+    </div>
+
+    <div id="micBox" class="mic-ui hidden">
+        <div class="mic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        </div>
+        <p>Listening now...</p>
+        <button id="stopMic" class="x-btn">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
